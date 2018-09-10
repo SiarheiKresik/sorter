@@ -1,30 +1,37 @@
+const NUMBERS_COMPARATOR = (a, b) => a - b;
+
 class Sorter {
   constructor() {
-    // your implementation
+    this.data = [];
+    this.comparator = NUMBERS_COMPARATOR;
   }
 
   add(element) {
-    // your implementation
+    this.data.push(element);
   }
 
   at(index) {
-    // your implementation
+    return this.data[index];
   }
 
   get length() {
-    // your implementation
+    return this.data.length;
   }
 
   toArray() {
-    // your implementation
+    return this.data;
   }
 
   sort(indices) {
-    // your implementation
+    const indices_sorted = indices.sort(NUMBERS_COMPARATOR);
+    indices_sorted
+      .map(index => this.data[index])
+      .sort(this.comparator)
+      .map((el, index) => (this.data[indices_sorted[index]] = el));
   }
 
   setComparator(compareFunction) {
-    // your implementation
+    this.comparator = compareFunction;
   }
 }
 
